@@ -8,10 +8,10 @@ import (
 func main() {
 }
 
-func getStrings(fileName string) ([]string, error) {
+func GetStrings(fileName string) ([]string, error) {
 	var lines []string
 
-	file, err := os.OpenFile(fileName)
+	file, err := os.Open(fileName)
 	if err != nil {
 		return nil, err
 	}
