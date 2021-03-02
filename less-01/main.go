@@ -4,11 +4,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Yury-st/hello"
 	"github.com/gorilla/mux"
 )
 
 func YourHandler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, my little child)))\n"))
+	w.Write([]byte(hello.Hello()))
 }
 
 func main() {
