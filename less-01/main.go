@@ -4,7 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Yury-st/hello"
+	"hello"
+
 	"github.com/gorilla/mux"
 )
 
