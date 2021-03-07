@@ -7,46 +7,36 @@ import (
 	"path/filepath"
 )
 
-func lineToSpace(line string) string {
-	lineSpaces := ""
-	for i := 0; i < len(line); i++ {
-		lineSpaces += " "
+func printSpace(path string) string {
+	spaces := ""
+	for i := 0; i < len(path); i++ {
+		spaces += " "
 	}
-	return lineSpaces + "|_"
+	return spaces + "|_"
 }
 
 func scanDirectory(path string) error {
-
 	files, err := ioutil.ReadDir(path)
-
 	if err != nil {
-		log.Fatal(err)
-	} else {
-		for _, file := range files {
-			filePath := filepath.Join(path, file.Name())
-			length := len(filePath) - len(file.Name())
-			if file.IsDir() {
-				fmt.Printf("%s%s\n", lineToSpace(path), filePath[length:])
-				err := scanDirectory(filePath)
-				if err != nil {
-					return err
-				}
-
-			} else {
-				fmt.Printf("%s%s\n", lineToSpace(path), filePath[length:])
-
-			}
+		return err
+	}
+	for _, file := range files {
+		filePath := filepath.Join(path, file.Name())
+		if file.IsDir() {
+			fmt.Printf("%s%s\n", printSpace(path), file.Name())
+			scanDirectory(filePath)
+		} else {
+			fmt.Printf("%s%s\n", printSpace(path), file.Name())
 		}
 	}
 	return nil
 }
 
 func main() {
-	path := "../"
-	fmt.Printf("%s\n", "|__")
+	path := ".."
+	fmt.Println("|__")
 	err := scanDirectory(path)
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
