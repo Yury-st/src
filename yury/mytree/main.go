@@ -33,7 +33,7 @@ func scanDirectory(path string) error {
 }
 
 func main() {
-	path := ".."
+	path := "."
 	fmt.Println("|__")
 	err := scanDirectory(path)
 	if err != nil {
