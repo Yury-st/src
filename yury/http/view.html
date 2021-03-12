@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гостенвая книга</title>
+</head>
+<body>
+    <h1>Записи про МИШУ)))</h1>
+    <div>
+        На странице {{.SignatureCount}} записей(и).
+      
+        <a href="new">Add yuor signature</a>
+    </div>
+    <div>
+        <ul>
+            {{range .Signatures}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+
+    </div>
+    
+</body>
+</html>

@@ -7,12 +7,25 @@ import (
 	"net/http"
 )
 
-func main() {
-	responseSize("https://vk.com/adkazy")
-	responseSize("https://golang.org")
+type Page struct {
+	URL  string
+	Size int
 }
 
-func responseSize(url string) {
+func main() {
+
+	pages := make(chan Page)
+	urls := []string{"https://vk.com/adkazy", "https://golang.org", "https://google.com"}
+	for _, url := range urls {
+		go responseSize(url, pages)
+	}
+	for i, _ := range urls {
+		page := <-pages
+		fmt.Printf("%v %v %v \n", i, page.URL, page.Size)
+	}
+}
+
+func responseSize(url string, pages chan Page) {
 	fmt.Println("Getting", url)
 	response, err := http.Get(url)
 	if err != nil {
@@ -23,5 +36,5 @@ func responseSize(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(len(body))
+	pages <- Page{url, len(body)}
 }
