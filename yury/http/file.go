@@ -28,6 +28,7 @@ func main() {
 	check(err)
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
+	
 	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
